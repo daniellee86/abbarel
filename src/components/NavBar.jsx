@@ -60,6 +60,10 @@ align-items: center;
 justify-content: space-between;
 `
 
+const Icon = styled.a`
+  
+`
+
 const NavBar = () => {
   return (
     <Container>
@@ -75,9 +79,9 @@ const NavBar = () => {
           </SearchContainer>
         </Center>
         <Right>
-          <PersonOutline/>
-          <FavoriteBorderOutlined/>
-          <ShoppingCartOutlined/>
+          <PersonOutline style={{fontsize:16}}/>
+          <FavoriteBorderOutlined style={{fontsize:16}}/>
+          <ShoppingCartOutlined style={{fontsize:16}}/>
         </Right>
 
     </Wrapper>
