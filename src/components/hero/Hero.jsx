@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import NavBar from './NavBar'
+import NavBar from '../NavBar'
 import { useState } from 'react'
-import { sliderItems } from '../data'
+import { sliderItems } from './slidedata'
 //
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
 
@@ -30,7 +30,7 @@ const ButtonWrapper = styled.div`
 const Arrow = styled.div`
 width: 50px;
 height: 50px;
-background-color: transparent;
+background-color: #FAF9F6;
 border: solid 1px black;
 border-radius: 50%;
 display: flex;
@@ -59,31 +59,33 @@ height: 100vh;
 padding: 55px 30px 0 30px;
 display: flex;
 align-items: center;
-background-color: #${props=>props.bg};
+background-image: ${props=>props.image};
+background-size: cover;
 `
 
 const InfoContainer = styled.div`
 height: 100%;
-width: 30%;
+width: 40%;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 justify-content: center;
-color: #FAF9F6;
+color: black;
 `
 const Title = styled.h1`
-font-size: 75px;
+font-size: 60px;
  font-family: 'EB Garamond', serif;
+ font-weight: 600;
 `
 const Desc = styled.p`
-font-size: 25px;
+font-size: 30px;
 letter-spacing: 3px;
 margin: 30px 0px;
 `
 const Button = styled.button`
 padding: 10px;
 font-size: 15px;
-font-weight: 200;
+font-weight: 600;
 background-color: transparent;
 color: black;
 border: 1px solid black;
@@ -92,46 +94,44 @@ cursor: pointer;
 `
 const ImgContainer = styled.div`
 height: 90%;
-width: 45%;
+width: 40%;
 display: flex;
 flex-direction: column;
 align-items: center;
 overflow: hidden;
-transform-style: preserve-3d;
-background-image:
-/* linear-gradient(black, black),  */
-${props=>props.image};
-background-size: cover;
-/* background-blend-mode: saturation; */
-/* border: solid 0.5px black; */
-border-radius: 30px;
-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+background: rgba(255, 255, 255, 0.11);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
 `
 
 const Product = styled.div`
+color: #FAF9F6;
 position: relative;
-flex: 1;
+flex: 2;
 width: 100%;
 display: flex;
-justify-content: center;
+flex-direction: column;
+justify-content: space-around;
 align-items: center;
 `
 const Circle = styled.div`
-height: 80%;
-width: 40%;
+height: 70%;
+width: 50%;
 background: linear-gradient(
     to right,
     rgb(255, 255, 255),
-    rgb(171, 171, 171)
+    rgb(157, 157, 157)
   );
 border-radius: 50%;
 `
 const ProductImage = styled.img`
-height: 95%;
+height: 70%;
 width: 50%;
 position: absolute;
 z-index: 2;
-transition: all 0.75s ease-out;
+top: 75px;
 `
 const Info = styled.div`
 flex: 1;
@@ -143,16 +143,16 @@ justify-content: space-around;
 color: #FAF9F6;
 padding: 0px 30px;
 `
-const Titles = styled.div``
+
 
 const CardTitle = styled.h2`
 font-weight: bold;
 font-size: 25px;
-transition: all 0.75s ease-out;
-`
-const CardDesc = styled.p`
-font-size: 20px;
-transition: all 0.75s ease-out;
+font-weight: 400;
+margin-bottom: 20px;
+text-decoration: underline;
+text-underline-offset: 5px;
+text-decoration-thickness: 1.5px;
 `
 
 const Sizes = styled.div`
@@ -163,13 +163,13 @@ justify-content: space-around;
 
 const Size = styled.button`
  padding: 0.5rem 2rem;
- background: #FAF9F6;
+ background: transparent;
   border: solid 0.5px black;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
   cursor: pointer;
   color: black;
-  transition: all 0.75s ease-out;
+  font-weight: 600;
 `
 
 const Purchases = styled.div`
@@ -180,13 +180,14 @@ justify-content: center;
 
 const Purchase = styled.button` 
   padding: 0.5rem 2rem;
-  background: #FAF9F6;
+  background: transparent;
   border: solid 0.5px black;
   color: black;
   cursor: pointer;
   border-radius: 30px;
   align-self: center;
   transition: all 0.75s ease-out;
+  font-weight: 600;
 `
 
 
@@ -226,24 +227,23 @@ const Hero = () => {
         <Wrapper slideIndex={slideIndex}>
 
             {sliderItems.map(item => (
-            <Slide bg={item.bg} key={item.id}>
+            <Slide  
+            image={`url("${sliderItems[slideIndex].img}")`}
+            key={item.id}
+            >
             <InfoContainer>
                 <Title>{item.title}</Title>
                 <Desc>{item.desc}</Desc>
                 <Button>SHOP NOW</Button>
             </InfoContainer>
 
-            <ImgContainer image={`url("${sliderItems[slideIndex].img}")`}>
+            <ImgContainer >
                 <Product>
+                    <CardTitle>{item.producttitle}</CardTitle>
                     <Circle></Circle>
                     <ProductImage src={item.product}></ProductImage>
                 </Product>
                 <Info>
-                    <Titles>
-                    <CardTitle>{item.producttitle}</CardTitle>
-                    <CardDesc>{item.productdesc}</CardDesc>
-                    </Titles>
-                  
                     <Sizes>
                         <Size>38</Size>
                         <Size>40</Size>

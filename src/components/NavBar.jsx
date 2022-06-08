@@ -47,7 +47,7 @@ justify-content: center;
 `
 const Input = styled.input`
 border: 0.5px solid black;
-background-color: transparent;
+background-color: white;
 padding: 5px 10px;
 width: 50%;
 border-radius: 20px;
